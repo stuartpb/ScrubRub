@@ -9,7 +9,7 @@ var nfi;
 
 if (typeof netflix != 'undefined') {
   if (netflix.cadmium) {
-	nfi = {
+    nfi = {
       player: netflix.cadmium.objects.videoPlayer(),
       imageRoot: netflix.cadmium.metadata.getActiveVideo().progressImageRoot
     };
@@ -25,7 +25,7 @@ function initScrubRub(nfi) {
   var vp = nfi.player;
   var imgroot = nfi.imageRoot;
   function getFrame(t) {
-  	t = Math.floor(t/10000).toString(10);
+    t = Math.floor(t/10000).toString(10);
     var f = '00000'.slice(t.length)+t;
     return imgroot + f + '.jpg';
   }
@@ -56,19 +56,18 @@ function initScrubRub(nfi) {
   var wasPaused;
   
   function targetTime() {
-  console.log(originTime, totalDelta)
     return originTime - totalDelta * 5;
   }
   
   function selectTouch(touch) {
     totalDelta += currentDelta;
-  	lastTouchId = touch.identifier;
+    lastTouchId = touch.identifier;
     lastTouchX = touch.clientX;
     currentDelta = 0;
   }
   
   function startRub(evt) {
-  	if (!vp.getBusy()) {
+    if (!vp.getBusy()) {
       wasPaused = vp.getPaused();
       vp.pause();
       originTime = vp.getCurrentTime();
@@ -82,7 +81,7 @@ function initScrubRub(nfi) {
   }
   
   function endRub(evt) {
-  	if (!vp.getBusy()) {
+    if (!vp.getBusy()) {
       lastTouchId = null;
       lastTouchX = null;
       filmstrip.style.opacity = 0;
@@ -92,7 +91,7 @@ function initScrubRub(nfi) {
       // when scrubbing, inadvertantly putting us into a paused state
       // so for now, just always resume
       if(!wasPaused || true) {
-	    vp.play();
+        vp.play();
       }
     }
   }
