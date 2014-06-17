@@ -101,14 +101,14 @@ function initScrubRub(nfi) {
   }
   
   function touchStart(evt) {
-  	if (!lastTouchId) {
+    if (!lastTouchId) {
       startRub(evt);
     }
     evt.preventDefault();
   }
   
   function touchStop(evt) {
-  	if (evt.touches.length == 0) {
+    if (evt.touches.length == 0) {
       totalDelta += currentDelta;
       endRub(evt);
     } else {
@@ -118,8 +118,8 @@ function initScrubRub(nfi) {
   }
   
   function touchMove(evt) {
-  	var touch = evt.touches[0];
-  	if (touch.identifier == lastTouchId) {
+    var touch = evt.touches[0];
+    if (touch.identifier == lastTouchId) {
       currentDelta = touch.clientX - lastTouchX;
     }
     else {
